@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2 class="page-title">Add a new game</h2>
+    <form method="POST" enctype="multipart/form-data" class="game-form">
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="game_type">Game Type:</label>
+            <select id="game_type" name="game_type" class="form-control" required>
+                <option value="">-- Select Type --</option>
+                <option value="Board Game">Board Game</option>
+                <option value="PC Game">PC Game</option>
+                <option value="RPG">RPG</option>
+                <option value="Card Game">Card Game</option>
+                <option value="Co-op">Co-op</option>
+                <option value="Party Game">Party Game</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="max_players">Max players:</label>
+            <input type="number" id="max_players" name="max_players" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" class="form-control"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="image">Game image (optional):</label>
+            <input type="file" id="image" name="image" class="form-control-file" accept="image/*">
+        </div>
+
+        <button type="submit" class="btn-add-game">
+            Add Game
+        </button>
+        <a href="{{ url_for('home') }}" class="btn btn-back">
+        <span class="btn-text">Back to home</span>
+        </a>
+    </form>
+{% endblock %}

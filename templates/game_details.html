@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="game-details">
+    <h2>{{ game.title }}</h2>
+    <img src="{{ url_for('static', filename='uploads/' + game.image_filename) }}" alt="{{ game.title }}" style="width: 300px; height: auto; margin-bottom: 1rem;">
+    
+    <p><strong>Description:</strong> {{ game.description }}</p>
+    <p><strong>Type:</strong> {{ game.type }}</p>
+    <p><strong>Created by:</strong> {{ game.creator.username }}</p>
+    <p><strong>People joined:</strong> {{ game.players|length }}</p>
+
+    <a href="{{ url_for('home') }}" class="btn btn-secondary">Back</a>
+</div>
+{% endblock %}

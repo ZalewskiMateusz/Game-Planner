@@ -1,0 +1,1066 @@
+/* General Reset & Body */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    background-image:
+        radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+    color: #e0e0e0;
+}
+
+/* Navigation Bar */
+.navbar {
+    background: rgba(20, 20, 20, 0.9);
+    padding: 0.8rem 1.5rem;
+    border-bottom: 1px solid rgba(255, 51, 102, 0.3);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    gap: 1.5rem;
+}
+
+/* Logo */
+.logo {
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+.logo-img {
+    height: 40px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Filtry (zachowane Twoje style) */
+.game-filters {
+    flex-grow: 1;
+    max-width: 600px;
+    margin: 0 1.5rem;
+    position: relative;
+}
+
+/* Nawigacja */
+.nav-links {
+    display: flex;
+    gap: 1.2rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nav-links li {
+    position: relative;
+}
+
+.nav-links a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 0.8rem;
+    border-radius: 6px;
+    transition: all 0.3s;
+    display: block;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+.nav-links a:hover {
+    color: white;
+    background: rgba(255, 51, 102, 0.2);
+    text-shadow: 0 0 8px rgba(255, 51, 102, 0.5);
+}
+
+/* Aktywny link */
+.nav-links a.active {
+    color: white;
+    background: rgba(255, 51, 102, 0.4);
+}
+
+/* Efekt hover dla linków */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #ff3366;
+    transition: all 0.3s;
+    transform: translateX(-50%);
+}
+
+.nav-links a:hover::after {
+    width: 70%;
+}
+
+/* Logout - specjalny styl */
+.nav-links a[href*="logout"] {
+    background: rgba(255, 51, 102, 0.1);
+    border: 1px solid rgba(255, 51, 102, 0.3);
+}
+
+.nav-links a[href*="logout"]:hover {
+    background: rgba(255, 51, 102, 0.3);
+}
+
+/* Responsywność */
+@media (max-width: 992px) {
+    .container {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .game-filters {
+        order: 3;
+        width: 100%;
+        margin: 0.5rem 0 0;
+    }
+
+    .nav-links {
+        margin-left: auto;
+    }
+}
+
+@media (max-width: 576px) {
+    .nav-links {
+        width: 100%;
+        justify-content: space-between;
+        gap: 0.5rem;
+    }
+
+    .nav-links a {
+        padding: 0.5rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* Content Wrapper */
+.content {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* Grid for Games */
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    justify-items: center;
+}
+
+/* Game Card */
+.game-card {
+    width: 300px;
+    height: 400px;
+    background:
+        radial-gradient(circle at center, #1a1a1a 0%, #0d0d0d 100%),
+        repeating-linear-gradient(
+            45deg,
+            #0d0d0d,
+            #0d0d0d 1px,
+            #1a1a1a 1px,
+            #1a1a1a 2px
+        );
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease;
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Game Image */
+.game-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background-color: #f5f5f5;
+}
+
+/* Card Content */
+.game-card .card-body {
+    padding: 1rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Game Title */
+.game-card h3 {
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0 0 0.5rem;
+    text-shadow: 0 0 8px rgba(100, 150, 255, 0.5);
+    text-align: center;
+}
+
+/* Game Info Section */
+.game-info {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+/* Join/Leave Buttons */
+.card-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.card-buttons form button {
+    padding: 0.4rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.card-buttons .join-btn {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.card-buttons .leave-btn {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+/* Placeholder Image */
+.placeholder {
+    width: 100%;
+    height: 200px;
+    background-color: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #888;
+    font-style: italic;
+    border-radius: 4px;
+}
+
+/* Popup css */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    backdrop-filter: blur(8px);
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background: rgba(30, 30, 30, 0.85);
+    margin: 5% auto;
+    padding: 2.5rem;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 600px;
+    position: relative;
+    border: 1px solid rgba(255, 51, 102, 0.3);
+    box-shadow:
+        0 0 30px rgba(0, 0, 0, 0.6),
+        0 0 0 1px rgba(255, 255, 255, 0.05),
+        inset 0 0 20px rgba(255, 51, 102, 0.1);
+    backdrop-filter: blur(12px);
+    color: #e0e0e0;
+    overflow: hidden;
+}
+
+.modal-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #ff3366, #4da6ff, #ff3366);
+    background-size: 200% 100%;
+    animation: gradientFlow 3s linear infinite;
+}
+
+.modal-content img {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.modal h2 {
+    color: white;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 10px rgba(77, 166, 255, 0.5);
+    font-size: 1.8rem;
+    position: relative;
+}
+
+.modal h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #ff3366, transparent);
+    margin-top: 0.5rem;
+    border-radius: 3px;
+}
+
+.modal p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.modal p strong {
+    color: #4da6ff;
+}
+
+.close {
+    position: absolute;
+    top: 10px; right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+
+/* Animacja gradientu */
+@keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+/* add game content */
+/* Główny kontener formularza */
+.game-form-container {
+    max-width: 700px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: rgba(20, 20, 20, 0.85);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow:
+        0 0 15px rgba(0, 0, 0, 0.5),
+        inset 0 0 10px rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(8px);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Neonowy akcent - dynamiczna obwódka */
+.game-form-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+        #ff3366,
+        #4da6ff,
+        #ff3366);
+    background-size: 200% 100%;
+    animation: gradientFlow 3s linear infinite;
+}
+
+@keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+/* Nagłówek */
+.game-form-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: white;
+    font-size: 2rem;
+    text-shadow: 0 0 8px rgba(255, 51, 102, 0.5);
+    position: relative;
+}
+
+/* Grupy formularza */
+.form-group {
+    margin-bottom: 1.8rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.6rem;
+    color: #e0e0e0;
+    font-size: 1.1rem;
+}
+
+/* Pola input/select/textarea */
+.form-control {
+    width: 100%;
+    padding: 0.8rem;
+    background: rgba(30, 30, 30, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #ff3366;
+    box-shadow: 0 0 0 3px rgba(255, 51, 102, 0.2);
+}
+
+/* Textarea - specjalne style */
+textarea.form-control {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* Akcje formularza */
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+/* Add Game z efektem neon trail */
+.btn-add-game {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    background: rgba(77, 166, 255, 0.1);
+    border: 2px solid #d40e82;
+    border-radius: 8px;
+    color: #d40e82;
+    font-weight: bold;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    flex: 1;
+    text-align: center;
+}
+
+.btn-add-game::before {
+    content: "+";
+    font-size: 1.2rem;
+    transition: transform 0.3s;
+}
+
+/* Neon trail */
+.btn-add-game::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.25),
+        transparent
+    );
+    transition: left 0.5s;
+}
+
+.btn-add-game:hover {
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(255, 51, 102, 0.4);
+}
+
+.btn-add-game:hover::before {
+    transform: scale(1.2);
+}
+
+.btn-add-game:hover::after {
+    left: 100%;
+}
+
+/* Back button */
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    background: rgba(77, 166, 255, 0.1);
+    border: 2px solid #4da6ff;
+    border-radius: 8px;
+    color: #4da6ff;
+    font-weight: bold;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    flex: 1;
+    text-align: center;
+}
+
+.btn-back::before {
+    content: "←";
+    transition: all 0.3s;
+}
+
+.btn-back:hover {
+    background: rgba(77, 166, 255, 0.2);
+    transform: translateX(-5px);
+    box-shadow: 0 0 15px rgba(77, 166, 255, 0.3);
+}
+
+.btn-back:hover::before {
+    transform: translateX(-3px);
+}
+
+.btn-back::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(77, 166, 255, 0.4),
+        transparent
+    );
+    transition: all 0.7s;
+}
+
+.btn-back:hover::after {
+    left: 100%;
+}
+
+/* Responsywność */
+@media (max-width: 768px) {
+    .game-form-container {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+}
+
+/*del button */
+.game-card {
+  position: relative;
+}
+
+.game-card .delete-form {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  opacity: 0; /* Domyślnie niewidoczny */
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.game-card:hover .delete-form {
+  opacity: 1; /* Pokazujemy przy hoverze */
+}
+
+.delete-btn {
+  --delete-color: #ff3366;
+  width: 32px;
+  height: 32px;
+  background: rgba(30, 30, 30, 0.9);
+  border: 2px solid var(--delete-color);
+  border-radius: 50%;
+  color: transparent;
+  font-size: 0;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.7),
+    0 0 10px rgba(255, 51, 102, 0.5);
+}
+
+/* Ikona "X" z pseudo-elementu */
+.delete-btn::before,
+.delete-btn::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60%;
+  height: 2px;
+  background: var(--delete-color);
+  transform-origin: center;
+}
+
+.delete-btn::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.delete-btn::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.delete-btn:hover {
+  background: rgba(255, 51, 102, 0.2);
+  transform: scale(1.2) rotate(90deg);
+  box-shadow:
+    0 0 0 2px rgba(0, 0, 0, 0.7),
+    0 0 20px rgba(255, 51, 102, 0.8);
+}
+
+.delete-btn:active {
+  transform: scale(0.9);
+  background: rgba(255, 51, 102, 0.4);
+}
+
+@keyframes pulse-warning {
+  0% { box-shadow: 0 0 0 0 rgba(255, 51, 102, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(255, 51, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 51, 102, 0); }
+}
+
+.delete-btn:hover::after {
+  animation: pulse-warning 1.5s infinite;
+}
+
+/* rest buttons */
+
+.join-btn,
+.leave-btn,
+.view-details-btn {
+    display: inline-block;
+    padding: 0.7rem 1.5rem;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    text-align: center;
+    border: none;
+    outline: none;
+    position: relative;
+    overflow: hidden;
+    margin: 0.3rem;
+    min-width: 100px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== PRZYCISK JOIN ===== */
+.join-btn {
+    background: linear-gradient(135deg, #4da6ff, #3385ff);
+    color: white;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.join-btn:hover {
+    background: linear-gradient(135deg, #3385ff, #1a75ff);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(77, 166, 255, 0.3);
+}
+
+.join-btn:active {
+    transform: translateY(1px);
+}
+
+.join-btn::after {
+    content: "+";
+    margin-left: 5px;
+    font-weight: bold;
+}
+
+/* ===== PRZYCISK LEAVE ===== */
+.leave-btn {
+    background: linear-gradient(135deg, #ff4d4d, #ff3333);
+    color: white;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.leave-btn:hover {
+    background: linear-gradient(135deg, #ff3333, #e60000);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(255, 77, 77, 0.3);
+}
+
+.leave-btn:active {
+    transform: translateY(1px);
+}
+
+.leave-btn::after {
+    content: "←";
+    margin-left: 5px;
+}
+
+/* ===== PRZYCISK VIEW DETAILS ===== */
+.view-details-btn {
+    background: linear-gradient(135deg, #9933ff, #8000ff);
+    color: white;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.view-details-btn:hover {
+    background: linear-gradient(135deg, #8000ff, #6600cc);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(153, 51, 255, 0.3);
+}
+
+.view-details-btn:active {
+    transform: translateY(1px);
+}
+
+.view-details-btn::after {
+    content: "🔍";
+    margin-left: 5px;
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.3));
+}
+
+/* ===== EFEKTY DODATKOWE ===== */
+/* Pulsująca animacja dla join */
+@keyframes pulse-join {
+    0% { box-shadow: 0 0 0 0 rgba(77, 166, 255, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(77, 166, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(77, 166, 255, 0); }
+}
+
+.join-btn {
+    animation: pulse-join 2s infinite;
+}
+
+/* Migający efekt dla leave */
+.leave-btn:hover {
+    animation: blink 0.5s 2;
+}
+
+@keyframes blink {
+    50% { opacity: 0.7; }
+}
+
+/* Neonowy border dla details */
+.view-details-btn {
+    border: 1px solid rgba(153, 51, 255, 0.3);
+}
+
+.view-details-btn:hover {
+    border: 1px solid rgba(153, 51, 255, 0.7);
+}
+
+/* Style dla filtrów */
+.game-filters {
+    position: relative;
+    margin-right: auto;
+    margin-left: 2rem;
+}
+
+.filter-toggle {
+    color: #fff;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 51, 102, 0.3);
+    border-radius: 4px;
+    transition: all 0.3s;
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(255, 51, 102, 0.5);
+}
+
+.filter-toggle:hover {
+    background: rgba(255, 51, 102, 0.5);
+}
+
+.filter-options {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: rgba(30, 30, 30, 0.95);
+    border: 1px solid #ff3366;
+    border-radius: 8px;
+    padding: 1rem;
+    z-index: 100;
+    min-width: 200px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+}
+
+.game-filters:hover .filter-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+}
+
+/* Style dla checkboxów */
+.filter-checkbox {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: #e0e0e0;
+    position: relative;
+    padding-left: 30px;
+    user-select: none;
+    white-space: nowrap;
+}
+
+.filter-checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background: rgba(30, 30, 30, 0.8);
+    border: 2px solid #4da6ff;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.filter-checkbox:hover .checkmark {
+    border-color: #ff3366;
+    box-shadow: 0 0 8px rgba(255, 51, 102, 0.5);
+}
+
+.filter-checkbox input:checked ~ .checkmark {
+    background: #4da6ff;
+    border-color: #4da6ff;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.filter-checkbox input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Responsywność */
+@media (max-width: 992px) {
+    .game-filters {
+        margin-left: 1rem;
+    }
+
+    .filter-options {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* ===================== */
+/* ===== AUTH FORMS ===== */
+/* ===================== */
+
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 2rem;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 400px;
+    background: rgba(20, 20, 20, 0.85);
+    border-radius: 16px;
+    padding: 2.5rem;
+    box-shadow:
+        0 0 20px rgba(0, 0, 0, 0.5),
+        inset 0 0 10px rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #ff3366, #4da6ff, #ff3366);
+    background-size: 200% 100%;
+    animation: gradientFlow 3s linear infinite;
+}
+
+.auth-title {
+    color: white;
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(77, 166, 255, 0.5);
+}
+
+.neon-line {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(77, 166, 255, 0.5), transparent);
+    margin-bottom: 2rem;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+}
+
+.input-group {
+    position: relative;
+}
+
+.auth-input {
+    width: 100%;
+    padding: 1rem 0.5rem 0.5rem;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+
+.auth-input:focus {
+    outline: none;
+    border-bottom-color: #4da6ff;
+}
+
+.auth-input:focus + .auth-label,
+.auth-input:not(:placeholder-shown) + .auth-label {
+    transform: translateY(-20px) scale(0.8);
+    color: #4da6ff;
+}
+
+.auth-label {
+    position: absolute;
+    left: 0.5rem;
+    top: 1rem;
+    color: rgba(255, 255, 255, 0.6);
+    pointer-events: none;
+    transition: all 0.3s;
+}
+
+.input-highlight {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #ff3366;
+    transition: width 0.3s;
+}
+
+.auth-input:focus ~ .input-highlight {
+    width: 100%;
+}
+
+.auth-btn {
+    background: linear-gradient(45deg, #ff3366, #e62e5c);
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s;
+    margin-top: 1rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.auth-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: all 0.5s;
+}
+
+.auth-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 51, 102, 0.4);
+}
+
+.auth-btn:hover::after {
+    left: 100%;
+}
+
+.btn-icon {
+    font-size: 1.2rem;
+}
+
+.auth-link {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.auth-link a {
+    color: #4da6ff;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.auth-link a:hover {
+    color: #ff3366;
+    text-shadow: 0 0 5px rgba(255, 51, 102, 0.5);
+}
+
+/* Animacja gradientu */
+@keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}

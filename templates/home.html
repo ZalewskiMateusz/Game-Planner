@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="page-title">Available Games</h2>
+<div class="game-grid">
+    {% for game in games %}
+
+    <div class="game-card" data-type="{{ game.game_type }}">
+        {% if current_user.is_authenticated and current_user.id == game.created_by %}
+        <form action="{{ url_for('delete_game', game_id=game.id) }}" method="POST" class="delete-form" onsubmit="return confirm('Are you sure?');">
+            <button type="submit" class="delete-btn" aria-label="Delete game" title="Delete game"></button>
+        </form>
+        {% endif %}
+
+    <h3 class="game-title">{{ game.title }}</h3>
+        <img src="{{ url_for('static', filename='images/games/' + game.image_filename) }}" alt="Game image" class="game-image">
+        <p>{{ game.participants|length }} player(s) joined</p>
+
+        {% if current_user.is_authenticated %}
+            {% if current_user in game.participants %}
+                <form action="{{ url_for('leave_game', game_id=game.id) }}" method="post">
+                    <button type="submit" class="leave-btn">Leave</button>
+                </form>
+            {% else %}
+                <form action="{{ url_for('join_game', game_id=game.id) }}" method="post">
+                    <button type="submit" class="join-btn">Join</button>
+                </form>
+            {% endif %}
+        {% endif %}
+
+        <button
+          class="btn btn-primary view-details-btn"
+          data-game='{{ game.to_dict() | tojson }}'>
+          View Details
+        </button>
+    </div>
+    {% endfor %}
+</div>
+    <div id="gameModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle">Game Title</h2>
+            <p><strong>Game type:</strong> <span id="modalType"></span></p>
+            <p><strong>Description:</strong> <span id="modalDescription"></span></p>
+            <p><strong>Max players:</strong> <span id="modalMaxPlayers"></span></p>
+            <p><strong>Added by:</strong> <span id="modalCreatedBy"></span></p>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Register - GamePlanner{% endblock %}
+{% block content %}
+<div class="auth-container">
+    <div class="auth-card">
+        <h2 class="auth-title">JOIN THE GAME</h2>
+        <div class="neon-line"></div>
+
+        <form method="POST" class="auth-form">
+            <div class="input-group">
+                <input type="text" name="username" required class="auth-input">
+                <label class="auth-label">Username</label>
+                <span class="input-highlight"></span>
+            </div>
+
+            <div class="input-group">
+                <input type="password" name="password" required class="auth-input">
+                <label class="auth-label">Password</label>
+                <span class="input-highlight"></span>
+            </div>
+
+            <button type="submit" class="auth-btn">
+                <span class="btn-text">CREATE ACCOUNT</span>
+                <span class="btn-icon">🎮</span>
+            </button>
+        </form>
+
+        <p class="auth-link">
+            Already have an account? <a href="{{ url_for('login') }}">LOG IN</a>
+        </p>
+    </div>
+</div>
+{% endblock %}
