@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2 class="page-title">Edit Game</h2>
+    <form method="POST" enctype="multipart/form-data" class="game-form">
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" class="form-control" required value="{{ game.title }}">
+        </div>
+
+        <div class="form-group">
+            <label for="game_type">Game Type:</label>
+            <select id="game_type" name="game_type" class="form-control" required>
+                <option value="">-- Select Type --</option>
+                {% for option in ['Board Game', 'PC Game', 'RPG', 'Card Game', 'Co-op', 'Party Game'] %}
+                    <option value="{{ option }}" {% if game.game_type == option %}selected{% endif %}>{{ option }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="max_players">Max players:</label>
+            <input type="number" id="max_players" name="max_players" class="form-control" required value="{{ game.max_players }}">
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" class="form-control">{{ game.description }}</textarea>
+        </div>
+
+
+        <div class="form-group">
+            <label for="image">Game image (optional):</label>
+            <input type="file" id="image" name="image" class="form-control-file" accept="image/*">
+        </div>
+
+        <button type="submit" class="btn-add-game">Save Changes</button>
+        <a href="{{ url_for('home') }}" class="btn btn-back">
+            <span class="btn-text">Cancel</span>
+        </a>
+    </form>
+{% endblock %}

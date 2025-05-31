@@ -1,16 +1,25 @@
 document.addEventListener('DOMContentLoaded', function () {
-
     const modal = document.getElementById('gameModal');
     const closeBtn = document.querySelector('.close');
 
     document.querySelectorAll('.view-details-btn').forEach(button => {
         button.addEventListener('click', () => {
             const game = JSON.parse(button.dataset.game);
+
             document.getElementById('modalTitle').innerText = game.title;
             document.getElementById('modalType').innerText = game.game_type || 'None';
             document.getElementById('modalDescription').innerText = game.description || 'No description';
             document.getElementById('modalMaxPlayers').innerText = game.max_players;
             document.getElementById('modalCreatedBy').innerText = game.created_by;
+
+            // 🆕 Wstawianie uczestników
+        const participantsElem = document.getElementById('modalParticipants');
+        if (game.participants && game.participants.length > 0) {
+            participantsElem.innerText = game.participants.join(', ');
+        } else {
+            participantsElem.innerText = 'No participants yet';
+        }
+
             modal.style.display = 'block';
         });
     });

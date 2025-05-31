@@ -17,6 +17,7 @@ class Game(db.Model):
     created_by_user = db.relationship('User', backref='created_games', lazy=True)
     image_filename = db.Column(db.String(100), nullable=False, default='NoImage.jpg')
     game_type = db.Column(db.String(50), nullable=True)
+    participants = db.relationship('UserGameParticipation', backref='participation', lazy=True) # Zmieniłem backref, aby uniknąć konfliktu
 
     def to_dict(self):
         return {
@@ -25,10 +26,12 @@ class Game(db.Model):
             "game_type": self.game_type,
             "description": self.description,
             "max_players": self.max_players,
-            "created_by": self.created_by_user.username
+            "created_by": self.created_by_user.username,
+            "participants": [p.user.username for p in self.participants]
         }
-
 class UserGameParticipation(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     game_id = db.Column(db.Integer, db.ForeignKey('game.id'), nullable=False)
+    user = db.relationship('User')
+    game = db.relationship('Game', backref=db.backref('user_participations', lazy=True)) # Dodana relacja do Game

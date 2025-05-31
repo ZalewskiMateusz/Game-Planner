@@ -33,9 +33,10 @@ def home():
     games = Game.query.all()
     for game in games:
         game.creator = User.query.get(game.created_by)
-        game.participants = User.query.join(UserGameParticipation).filter(
-            UserGameParticipation.game_id == game.id
-        ).all()
+        game_participations = game.participants
+        participants_users = [participation.user for participation in game_participations]
+        game.participants_users = participants_users
+
     return render_template('home.html', games=games)
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -148,6 +149,36 @@ def delete_game(game_id):
     db.session.commit()
     flash("Game deleted successfully.", "success")
     return redirect(url_for('home'))
+
+
+@app.route('/edit/<int:game_id>', methods=['GET', 'POST'])
+@login_required
+def edit_game(game_id):
+    game = Game.query.get_or_404(game_id)
+    if game.created_by != current_user.id:
+        abort(403)
+
+    if request.method == 'POST':
+        game.title = request.form['title']
+        game.description = request.form['description']
+        game.max_players = request.form['max_players']
+        game.game_type = request.form['game_type']
+
+        #Images
+        if 'image' in request.files:
+            image_file = request.files['image']
+            if image_file and image_file.filename != '' and allowed_file(image_file.filename):
+                filename = secure_filename(image_file.filename)
+                image_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
+                image_file.save(image_path)
+                game.image_filename = filename
+
+        db.session.commit()
+        flash('Game updated successfully!')
+        return redirect(url_for('home'))
+
+    return render_template('edit_game.html', game=game)
 
 if __name__ == '__main__':
     with app.app_context():
